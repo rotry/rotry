@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            width: 100%;
+            background-color: #FF69B4;
+        }
+        #myOnclick{
+            width: 170px;
+            height: 170px;
+            position: fixed;
+            top: 40%;
+            left: 45%;
+            cursor: pointer;
+            z-index: 100;
+        
+        }
+        #myImg{
+            width: 150px;
+            height: 150px;
+            animation: moveImg 1s linear  infinite;
+        }
+        @keyframes moveImg {
+            from{}
+            to{
+                width: 170px;
+                height: 170px;
+            }
+        }
+        span{
+            display: block;
+            text-align: center;
+            font-size: 36px;
+        }
+    </style>
+    <script type="text/javascript">
+        var time = 0;
+        //生成一个爱心
+        function createOneLove(){
+            var leftX = 0.471 * innerWidth;
+            var topY = 0.43 * innerHeight;
+            var loveDiv = document.createElement("div");
+            loveDiv.style.position = "fixed";
+            loveDiv.style.left = leftX + "px";
+            loveDiv.style.top = topY + "px";
+            loveDiv.style.width = 75 + "px";
+            loveDiv.style.height = 75 + "px";
+            loveDiv.style.opacity = "0.1";
+            loveDiv.innerHTML = "<img src = '../loveMove/image/love.png' width = '75' height = '75'/>";
+            
+            document.body.appendChild(loveDiv);
+        }
+        function big(){
+            document.getElementById("myImg").style.width=170 + "px"
+            document.getElementById("myImg").style.height=170 + "px"
+        }
+        function small(){
+            document.getElementById("myImg").style.width=150 + "px"
+            document.getElementById("myImg").style.height=150 + "px"
+        }
+        //生成多个爱心,并让其移动
+        function createManyLove(){
+           document.getElementById("mytext").innerHTML="憨憨，这是心动的感jio啊！！！";
+           document.getElementById("myImg").style.animation="moveImg 0.5s ease-in infinite";
+            for(var i=1; i<=8;i++){
+                createOneLove();
+            }
+            loveMove();
+        }
+        //爱心移动
+        function loveMove(){
+            var allLove = document.getElementsByTagName("div");
+                for(var i=0; i<allLove.length;i++){
+                    if(i==0){
+                        allLove[i].style.top = allLove[i].offsetTop - 10 + "px";
+                    }
+                    else if(i==1){
+                        allLove[i].style.left = allLove[i].offsetLeft - 10 +"px";
+                        allLove[i].style.top = allLove[i].offsetTop - 10 + "px";
+                    }
+                    else if(i==2){
+                        allLove[i].style.left = allLove[i].offsetLeft - 10 +"px";
+                    }
+                    else if(i==3){
+                        allLove[i].style.left = allLove[i].offsetLeft -10 +"px";
+                        allLove[i].style.top = allLove[i].offsetTop +10 + "px";
+                    }
+                    else if(i==4){
+                        
+                        allLove[i].style.top = allLove[i].offsetTop + 10 + "px";
+                    }
+                    else if(i==5){
+                        allLove[i].style.left = allLove[i].offsetLeft + 10 +"px";
+                        allLove[i].style.top = allLove[i].offsetTop + 10 + "px";
+                    }
+                    else if(i==6){
+                        allLove[i].style.left = allLove[i].offsetLeft + 10 +"px";                    
+                    }
+                    else{
+                        allLove[i].style.left = allLove[i].offsetLeft + 10 +"px";
+                        allLove[i].style.top = allLove[i].offsetTop - 10 + "px";
+                    }
+            }
+            setTimeout(loveMove,50);           
+        }
+    </script>
+</head>
+<body>
+    <a id="myOnclick" onclick="createManyLove()">
+        <img id="myImg" src="image/love.png">
+    </a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <span id="mytext">大可爱快点击红心</span>
+</body>
+</html>
